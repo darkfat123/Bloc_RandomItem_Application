@@ -1,10 +1,28 @@
-part of 'add_money_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class AddMoneyState extends Equatable {
-  const AddMoneyState();
-  
-  @override
-  List<Object> get props => [];
+abstract class DepositState extends Equatable {
+ const DepositState();
 }
 
-final class AddMoneyInitial extends AddMoneyState {}
+class DepositInitial extends DepositState {
+ @override
+ List<Object> get props => [];
+}
+
+class DepositSuccess extends DepositState {
+ final double amount;
+
+ const DepositSuccess({required this.amount});
+
+ @override
+ List<Object> get props => [amount];
+}
+
+class DepositFailure extends DepositState {
+ final String message;
+
+ const DepositFailure({required this.message});
+
+ @override
+ List<Object> get props => [message];
+}

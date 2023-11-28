@@ -1,13 +1,23 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:gashapon_application/bloc/tier_item/deposit/bloc/add_money_event.dart';
+import 'package:gashapon_application/bloc/tier_item/deposit/bloc/add_money_state.dart';
+import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
-part 'add_money_event.dart';
-part 'add_money_state.dart';
 
-class AddMoneyBloc extends Bloc<AddMoneyEvent, AddMoneyState> {
-  AddMoneyBloc() : super(AddMoneyInitial()) {
-    on<AddMoneyEvent>((event, emit) {
-      // TODO: implement event handler
-    });
-  }
+class DepositBloc extends Bloc<DepositEvent, DepositState> {
+ DepositBloc() : super(DepositInitial());
+
+ @override
+ Stream<DepositState> mapEventToState(DepositEvent event) async* {
+    if (event is Deposit) {
+      if (event.amount > 0) {
+        yield DepositSuccess(amount: event.amount);
+      } else {
+        yield DepositFailure(message: 'Amount must be greater than 0');
+      }
+    }
+ }
 }

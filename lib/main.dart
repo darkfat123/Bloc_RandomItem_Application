@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gashapon_application/bloc/tier_item/deposit/bloc/add_money_bloc.dart';
 import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
+import 'package:gashapon_application/pages/addMoney.dart';
 import 'package:gashapon_application/pages/randomItem.dart';
 
 
@@ -13,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider(
-        create: (context) => TierItemBloc(),
-        child: MyHomePage(),
+        create: (context) => DepositBloc(),
+        child: AddMoney(),
       ),
     );
   }

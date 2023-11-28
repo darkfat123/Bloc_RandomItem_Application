@@ -1,8 +1,14 @@
-part of 'add_money_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class AddMoneyEvent extends Equatable {
-  const AddMoneyEvent();
+abstract class DepositEvent extends Equatable {
+ const DepositEvent();
+}
 
-  @override
-  List<Object> get props => [];
+class Deposit extends DepositEvent {
+ final double amount;
+
+ const Deposit({required this.amount});
+
+ @override
+ List<Object> get props => [amount];
 }
