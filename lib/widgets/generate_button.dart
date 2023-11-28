@@ -9,6 +9,6 @@ Widget GenerateButton(BuildContext context) {
       BlocProvider.of<TierItemBloc>(context).add(GenerateRandomNumber());
     },
     style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.all(20)),backgroundColor: MaterialStateProperty.all(Colors.black)),
-    child: Text('สุ่มไอเทม'),
+    child: Text('สุ่มไอเทม ครั้งละ 20 บาท'),
   );
 }
