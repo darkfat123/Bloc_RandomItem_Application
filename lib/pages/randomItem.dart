@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gashapon_application/bloc/tier_item_bloc.dart';
+import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 import 'package:gashapon_application/widgets/display_item.dart';
 import 'package:gashapon_application/widgets/generate_button.dart';
 
