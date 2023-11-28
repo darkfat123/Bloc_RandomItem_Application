@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gashapon_application/widgets/generate_button.dart';
 
 import 'bloc/tier_item_bloc.dart';
 
@@ -24,7 +25,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tier Item Generator'),
+        title: const Center(child: Text('โปรแกรมสุ่มไอเท็ม')),
+        backgroundColor: Colors.black,
       ),
       body: Center(
         child: Column(
@@ -33,29 +35,24 @@ class MyHomePage extends StatelessWidget {
             BlocBuilder<TierItemBloc, TierItemState>(
               builder: (context, state) {
                 if (state is TierItemInitial) {
-                  return Text('Press the button to generate a tier item.');
+                  return const Text('Press the button to generate a tier item.');
                 } else if (state is SPlusTierItem) {
-                  return Text('S+ Tier Item');
+                  return const Text('S+ Tier Item');
                 } else if (state is STierItem) {
-                  return Text('S Tier Item');
+                  return const Text('S Tier Item');
                 } else if (state is ATierItem) {
-                  return Text('A Tier Item');
+                  return const Text('A Tier Item');
                 } else if (state is BTierItem) {
-                  return Text('B Tier Item');
+                  return const Text('B Tier Item');
                 } else if (state is CTierItem) {
-                  return Text('C Tier Item');
+                  return const Text('C Tier Item');
                 } else {
-                  return Text('Unknown Tier Item');
+                  return const Text('Unknown Tier Item');
                 }
               },
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<TierItemBloc>(context).add(GenerateRandomNumber());
-              },
-              child: Text('Generate Tier Item'),
-            ),
+            const SizedBox(height: 20),
+            GenerateButton(context),
           ],
         ),
       ),

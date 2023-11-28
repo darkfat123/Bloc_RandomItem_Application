@@ -18,7 +18,7 @@ class TierItemBloc extends Bloc<TierItemEvent, TierItemState> {
 
   int _generateRandomNumber() {
     final random = Random();
-    return random.nextInt(100) + 1; // สุ่มตัวเลข 1-100
+    return random.nextInt(150) + 1; // สุ่มตัวเลข 1-100
   }
 
   TierItemState _mapNumberToTier(int number) {
