@@ -4,13 +4,21 @@ import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 
 
 
-// ignore: non_constant_identifier_names
-Widget GenerateButton(BuildContext context) {
-  return ElevatedButton(
-    onPressed: () {
-      BlocProvider.of<TierItemBloc>(context).add(GenerateRandomNumber());
-    },
-    style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.all(20)),backgroundColor: MaterialStateProperty.all(Colors.black)),
-    child: Text('สุ่มไอเทม ครั้งละ 20 บาท'),
-  );
+// Assuming your GenerateButton widget looks something like this
+class GenerateButton extends StatelessWidget {
+  final BuildContext context;
+
+  GenerateButton(this.context);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        // Dispatch an event to generate a new item and deduct money
+        BlocProvider.of<TierItemBloc>(context).add(GenerateRandomNumber(cost: 20));
+      },
+      child: Text('Generate Item'),
+    );
+  }
 }
+

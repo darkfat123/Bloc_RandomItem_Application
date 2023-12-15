@@ -5,14 +5,21 @@ import 'package:equatable/equatable.dart';
 part 'tier_item_event.dart';
 part 'tier_item_state.dart';
 
+
+
 class TierItemBloc extends Bloc<TierItemEvent, TierItemState> {
-  TierItemBloc() : super(TierItemInitial());
+  double money;
+  TierItemBloc({required this.money}) : super(TierItemInitial());
 
   @override
   Stream<TierItemState> mapEventToState(TierItemEvent event) async* {
     if (event is GenerateRandomNumber) {
-      final randomNumber = _generateRandomNumber();
-      yield _mapNumberToTier(randomNumber);
+      if (money >= event.cost) {
+        final randomNumber = _generateRandomNumber();
+        yield _mapNumberToTier(randomNumber);
+        money -= event.cost;
+        yield MoneyUpdate(money: money);
+      }
     }
   }
 

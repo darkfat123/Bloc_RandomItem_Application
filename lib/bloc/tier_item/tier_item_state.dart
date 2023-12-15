@@ -33,3 +33,12 @@ class CTierItem extends TierItemState {
   @override
   List<Object> get props => [];
 }
+
+class MoneyUpdate extends TierItemState {
+  final double money;
+
+  MoneyUpdate({required this.money});
+
+  @override
+  List<Object> get props => [money];
+}

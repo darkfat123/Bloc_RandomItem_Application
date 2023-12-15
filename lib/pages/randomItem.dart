@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gashapon_application/bloc/deposit/add_money_bloc.dart';
+import 'package:gashapon_application/bloc/deposit/add_money_state.dart';
 import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 import 'package:gashapon_application/widgets/display_item.dart';
 import 'package:gashapon_application/widgets/generate_button.dart';
@@ -9,7 +11,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('โปรแกรมสุ่มไอเท็ม')),
+        title: Text('โปรแกรมสุ่มไอเท็ม'),
         backgroundColor: Colors.black,
       ),
       body: Center(
@@ -18,8 +20,23 @@ class MyHomePage extends StatelessWidget {
           children: [
             BlocBuilder<TierItemBloc, TierItemState>(
               builder: (context, state) {
+                if (state is MoneyUpdate) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Money: ${state.money.toString()}'),
+                    ],
+                  );
+                } else {
+                  return Text("กดปุ่มเพื่อเริ่มสุ่มไอเทม");
+                }
+              
+              },
+            ),
+            BlocBuilder<TierItemBloc, TierItemState>(
+              builder: (context, state) {
                 if (state is TierItemInitial) {
-                  return const Text('กดปุ่มเพื่อสุ่มไอเท็ม');
+                  return const Text('Press the button to generate an item');
                 } else if (state is SPlusTierItem) {
                   return DisplayItem("S+ Tier Item");
                 } else if (state is STierItem) {

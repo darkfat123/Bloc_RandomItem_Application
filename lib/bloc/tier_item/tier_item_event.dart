@@ -7,4 +7,8 @@ abstract class TierItemEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GenerateRandomNumber extends TierItemEvent {}
+class GenerateRandomNumber extends TierItemEvent {
+  final double cost;
+
+  GenerateRandomNumber({required this.cost});
+}
