@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_bloc.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_state.dart';
 import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 import 'package:gashapon_application/widgets/display_item.dart';
 import 'package:gashapon_application/widgets/generate_button.dart';
@@ -16,7 +14,6 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocBuilder<TierItemBloc, TierItemState>(
               builder: (context, state) {
@@ -30,13 +27,12 @@ class MyHomePage extends StatelessWidget {
                 } else {
                   return Text("กดปุ่มเพื่อเริ่มสุ่มไอเทม");
                 }
-              
               },
             ),
             BlocBuilder<TierItemBloc, TierItemState>(
               builder: (context, state) {
-                if (state is TierItemInitial) {
-                  return const Text('Press the button to generate an item');
+                if (state is MoneyUpdate) {
+                  return Text("กดปุ่มเพื่อเริ่มสุ่มไอเท็ม");
                 } else if (state is SPlusTierItem) {
                   return DisplayItem("S+ Tier Item");
                 } else if (state is STierItem) {
@@ -45,12 +41,14 @@ class MyHomePage extends StatelessWidget {
                   return DisplayItem("A Tier Item");
                 } else if (state is BTierItem) {
                   return DisplayItem("B Tier Item");
-                } else {
+                } else if (state is CTierItem) {
                   return DisplayItem("C Tier Item");
+                } else {
+                  print(state);
+                  return Text("เงินของคุณไม่เพียงพอ");
                 }
               },
             ),
-            const SizedBox(height: 20),
             GenerateButton(context),
           ],
         ),

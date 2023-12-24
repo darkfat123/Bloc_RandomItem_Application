@@ -1,44 +1,53 @@
 import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'tier_item_event.dart';
 part 'tier_item_state.dart';
 
-
-
 class TierItemBloc extends Bloc<TierItemEvent, TierItemState> {
   double money;
-  TierItemBloc({required this.money}) : super(TierItemInitial());
+
+  TierItemBloc({required this.money})
+      : super(MoneyUpdate(money: money));
 
   @override
   Stream<TierItemState> mapEventToState(TierItemEvent event) async* {
     if (event is GenerateRandomNumber) {
-      if (money >= event.cost) {
-        final randomNumber = _generateRandomNumber();
-        yield _mapNumberToTier(randomNumber);
-        money -= event.cost;
-        yield MoneyUpdate(money: money);
-      }
+      yield* _mapGenerateItemToState();
     }
   }
 
   int _generateRandomNumber() {
     final random = Random();
-    return random.nextInt(150) + 1; // สุ่มตัวเลข 1-100
+    return random.nextInt(150) + 1;
   }
 
-  TierItemState _mapNumberToTier(int number) {
-    if (number >= 1 && number <= 5) {
-      return SPlusTierItem();
-    } else if (number >= 6 && number <= 20) {
-      return STierItem();
-    } else if (number >= 21 && number <= 50) {
-      return ATierItem();
-    } else if (number >= 51 && number <= 90) {
-      return BTierItem();
+  Stream<TierItemState> _mapGenerateItemToState() async* {
+    final randomNumber = _generateRandomNumber();
+
+    if (money >= 20) {
+      // Deduct money
+      money -= 20;
+
+      // Update money state
+      yield MoneyUpdate(money: money);
+
+      // Emit the corresponding item tier state
+      if (randomNumber >= 1 && randomNumber <= 5) {
+        yield SPlusTierItem();
+      } else if (randomNumber >= 6 && randomNumber <= 20) {
+        yield STierItem();
+      } else if (randomNumber >= 21 && randomNumber <= 50) {
+        yield ATierItem();
+      } else if (randomNumber >= 51 && randomNumber <= 90) {
+        yield BTierItem();
+      } else {
+        yield CTierItem();
+      }
     } else {
-      return CTierItem();
+      yield NoMoney();
     }
   }
 }

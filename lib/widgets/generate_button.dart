@@ -13,11 +13,12 @@ class GenerateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      style: ButtonStyle(padding: MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal:150,vertical: 20)),backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 10, 168, 15))),
       onPressed: () {
         // Dispatch an event to generate a new item and deduct money
         BlocProvider.of<TierItemBloc>(context).add(GenerateRandomNumber(cost: 20));
       },
-      child: Text('Generate Item'),
+      child: Text('สุ่มไอเท็ม',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,),),
     );
   }
 }

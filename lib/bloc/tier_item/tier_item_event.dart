@@ -8,7 +8,8 @@ abstract class TierItemEvent extends Equatable {
 }
 
 class GenerateRandomNumber extends TierItemEvent {
-  final double cost;
+  final int cost;
 
   GenerateRandomNumber({required this.cost});
 }
+

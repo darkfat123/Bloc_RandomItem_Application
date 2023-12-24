@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_bloc.dart';
+import 'package:gashapon_application/bloc/bloc/add_money_bloc.dart';
 import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 import 'package:gashapon_application/pages/addMoney.dart';
 import 'package:gashapon_application/pages/randomItem.dart';

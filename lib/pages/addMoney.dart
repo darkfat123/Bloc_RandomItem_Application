@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_bloc.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_event.dart';
-import 'package:gashapon_application/bloc/deposit/add_money_state.dart';
+import 'package:gashapon_application/bloc/bloc/add_money_bloc.dart';
+import 'package:gashapon_application/bloc/bloc/add_money_event.dart';
+import 'package:gashapon_application/bloc/bloc/add_money_state.dart';
+
 import 'package:gashapon_application/bloc/tier_item/tier_item_bloc.dart';
 import 'package:gashapon_application/pages/randomItem.dart';
 
@@ -13,6 +14,7 @@ class AddMoney extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('ฝากเงิน'),
       ),
       body: Padding(
