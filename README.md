@@ -1,8 +1,8 @@
 # gashapon_application
 
-##This application have developed for learning about state management of BLOC. 
+## This application have developed for learning about state management of BLOC. 
 
-###Getting Started
+### Getting Started
 - Users type the input for money that you want to randoming
 - 20 THB per 1 click (can modify)
 - If money less than 20 THB. Users can not randoming item anymore until deposit more money from the first page.
