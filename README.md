@@ -1,6 +1,6 @@
 # gashapon_application
 
-## This application have developed for learning about state management of BLOC. 
+### This application have developed for learning about state management of BLOC. 
 
 ### Getting Started
 - Users type the input for money that you want to randoming
